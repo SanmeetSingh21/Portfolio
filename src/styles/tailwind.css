@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---- Theme variables ---- */
+:root {
+  --bg: #F9FAFB;               
+  --text: #0F172A;             
+  --muted: #6B7280;            
+
+  --primary-1: #415A77;        /* Indigo */
+  --primary-2: #1B263B;        /* Darker Blue */
+  --primary-grad: linear-gradient(90deg, var(--primary-1), var(--primary-2));
+
+  --card-shadow: 0 12px 28px rgba(16, 24, 40, 0.06);
+}
+
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+}
+
+/* === Utilities === */
+
+/* Gradient text */
+.gradient-text {
+  background: var(--primary-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Gradient background */
+.gradient-bg {
+  background: var(--primary-grad);
+  color: white;
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: all 0.3s ease;
+  box-shadow: var(--card-shadow);
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Section spacing */
+section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+/* === Flip Card Animation (for Contact.jsx) === */
+.flip-card {
+  perspective: 1500px; /* deeper 3D effect */
+  position: relative;
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.9s cubic-bezier(0.65, 0, 0.35, 1);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Hover effect (desktop only) */
+@media (hover: hover) and (pointer: fine) {
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg) scale(1.02); /* subtle zoom */
+  }
+}
+
+/* Toggle via React */
+.flip-card-inner.is-flipped {
+  transform: rotateY(180deg) scale(1.02);
+}
+
+/* Card faces */
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  inset: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.4s ease;
+}
+
+/* Back side */
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* Depth shadow on flip */
+.flip-card-inner.is-flipped .flip-card-front,
+.flip-card:hover .flip-card-front {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
