@@ -46,7 +46,7 @@ export default function Hero() {
             Hire Me
           </a>
           <a
-            href="/Sanmeets_Resume_2025.pdf"
+            href="/Sanmeet_Resume_2025.pdf"
             className="px-5 py-3 rounded-lg font-medium border text-gray-700 hover:bg-gray-50 transition"
           >
             Download Resume
